@@ -58,27 +58,31 @@ def show(self):
     shell.SendKeys('%')
     win32gui.SetForegroundWindow(hwnd)  
 
-while(1):
-    time.sleep(5)
-    #hwnd = 395100
-    shell = win32com.client.Dispatch("WScript.Shell")
-    shell.SendKeys('%')
-    win32gui.SetForegroundWindow(hwnd)
-    
-    msg = imToString()
-    for c in string.punctuation:  
-        msg = msg.replace(c,"")    
-    score = int(msg)
-    print("Your current score is: ", score, ". Haven't reached the desired score yet.")
-    
-    if (score >= 2550 or score <= 1800):
-    	print("Your current score is: ", score, ". Congratulations! Mission accomplished.")
-        break
-    else:
-        show(self)
-        win32api.keybd_event(120,0,0,0)                              # 此处按下F9（0x78 = 120），为ifuzhu默认启动热键，有需要更改的请自行修改此处值
-        win32api.keybd_event(120,0,win32con.KEYEVENTF_KEYUP,0) 
-    time.sleep(900)
+def main(int dest)：                                                   # dest为目标分数
+	while(1):
+	    time.sleep(5)
+	    #hwnd = 395100
+	    shell = win32com.client.Dispatch("WScript.Shell")
+	    shell.SendKeys('%')
+	    win32gui.SetForegroundWindow(hwnd)
+	    
+	    msg = imToString()
+	    for c in string.punctuation:  
+	        msg = msg.replace(c,"")    
+	    score = int(msg)
+	    print("Your current score is: ", score, ". Haven't reached the desired score yet.")
+	    
+	    if (score >= dest or score <= 1800):
+	    	print("Your current score is: ", score, ". Congratulations! Mission accomplished.")
+	        break
+	    else:
+	        show(self)
+	        win32api.keybd_event(120,0,0,0)                              # 此处按下F9（0x78 = 120），为ifuzhu默认启动热键，有需要更改的请自行修改此处值
+	        win32api.keybd_event(120,0,win32con.KEYEVENTF_KEYUP,0) 
+	    time.sleep(900)
+
+main(2550)
+
 
 ##   FOR TEST PURPOSE ONLY   ##
 #from pymouse import PyMouse
